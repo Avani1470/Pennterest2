@@ -1,0 +1,25 @@
+// Jade file to specify output of an actors list
+// Inherits from layout
+extend layout
+block content
+  p
+    | #{title}:
+    
+    .img_grid
+    - for (var inx = 0; inx <results.length; inx++)
+      .floated_img
+        p #{results[inx].OBJECTNAME}
+        p RATING: #{results[inx].AVG}
+        img(src=results[inx].OBJECTURL, width='250px', height='250px')
+        .foot
+          .left
+            a(href='/pin_unpin?objectid=#{results[inx].OBJECTID}&objectsource=#{results[inx].OBJECTSOURCE}&ispinned=#{results[inx].ISPINNED}') #{results[inx].ISPINNED}
+          .right
+            a(margin='2px' href='/rate?objectid=#{results[inx].OBJECTID}&objectsource=#{results[inx].OBJECTSOURCE}&rating=1') 1
+            a(margin='2px' href='/rate?objectid=#{results[inx].OBJECTID}&objectsource=#{results[inx].OBJECTSOURCE}&rating=2') 2
+            a(margin='2px' href='/rate?objectid=#{results[inx].OBJECTID}&objectsource=#{results[inx].OBJECTSOURCE}&rating=3') 3
+            a(margin='2px' href='/rate?objectid=#{results[inx].OBJECTID}&objectsource=#{results[inx].OBJECTSOURCE}&rating=4') 4
+            a(margin='2px' href='/rate?objectid=#{results[inx].OBJECTID}&objectsource=#{results[inx].OBJECTSOURCE}&rating=5') 5
+            
+        
+ 
