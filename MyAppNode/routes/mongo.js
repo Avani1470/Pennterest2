@@ -17,7 +17,7 @@ var http = require('http');
 
 
 exports.do_work = function(req, res){
-	MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
+	MongoClient.connect('mongodb://avanid:@ds053778.mongolab.com:53778/pennterestcache', function(err, db) {
 		  if(!err) {
 		    console.log("We are connected");
 		  }

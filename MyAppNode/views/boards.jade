@@ -18,10 +18,10 @@ block content
     .img_grid
     - for (var inx = 0; inx < results.length; inx++)
       .floated_img
-        img(src='#{results[inx].PHOTO}', width='150px', height='150px',hspace=10)
+        img(src=results[inx].PHOTO, width='150px', height='150px',hspace=10)
         
         p  
-          a(href='#') #{results[inx].BOARDNAME} 
+          a(href='/boarddetails?board_name=#{results[inx].BOARDNAME}&owner_login=#{results[inx].OWNERLOGIN}') #{results[inx].BOARDNAME} 
           - if(session==login)
               a(href='/deleteBoard/?board_name=#{results[inx].BOARDNAME}') delete
           

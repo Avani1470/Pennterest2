@@ -22,6 +22,7 @@ var express = require('express')
   , friends = require('./routes/friends')
   
   , boards = require('./routes/boards')
+  ,boarddetails = require('./routes/boardDetails')
   , addBoard = require('./routes/addBoard')
   , deleteBoard = require('./routes/deleteBoard')
   
@@ -76,6 +77,7 @@ app.get('/Bing', Bing.do_work);
 app.get('/user', user.do_work);
 
 app.get('/boards', boards.do_work);
+app.get('/boarddetails', boarddetails.do_work);
 app.get('/addBoard', addBoard.do_work);
 app.get('/deleteBoard', deleteBoard.do_work);
 
