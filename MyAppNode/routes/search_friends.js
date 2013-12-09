@@ -1,0 +1,55 @@
+// Connect string to Oracle
+var connectData = { 
+		"hostname" : "pennterest.cf2k3xodmmdr.us-west-2.rds.amazonaws.com",
+		"user" : "pennterest_m",
+		"password" : "pennterestpassword",
+		"database" : "PENNTERE" };
+var oracle =  require("oracle");
+
+/////
+// Query the oracle database, and call output_actors on the results
+//
+// res = HTTP result object sent back to the client
+// name = Name to query for
+function query_db(res,name,searchFriend) {
+  oracle.connect(connectData, function(err, connection) {
+    if ( err ) {
+    	console.log(err);
+    } else {
+	  	// selecting rows
+	  	connection.execute("select givenname, surname,affiliation,login,profilepic,"
+	  			+"(case when exists(select * from follower f where follower ='"+name+"' and f.following=u.login) then 'delete' else 'add' end )"
+	  			+"as isdelete from users u where ( givenname like '%"+searchFriend+"%'"
+	  			+"or surname like '%"+searchFriend+"%' or login like '%"+searchFriend+"%') and login !='"+name+"'", 
+	  			   [], 
+	  			   function(err, results) {
+	  	    if ( err ) {
+	  	    	console.log(err);
+	  	    } else {
+	  	    	connection.close(); // done with the connection
+	  	    	output_actors(res, name, results);
+	  	    }
+	
+	  	}); // end connection.execute
+    }
+  }); // end oracle.connect
+}
+
+/////
+// Given a set of query results, output a table
+//
+// res = HTTP result object sent back to the client
+// name = Name to query for
+// results = List object of query results
+function output_actors(res,name,results) {
+	res.render('friends.jade',
+		   { title: "Search Result for " + name,
+		     results: results }
+	  );
+}
+
+/////
+// This is what's called by the main app 
+exports.do_work = function(req, res){
+	query_db(res,req.session.user,req.query.searchFriend);
+};

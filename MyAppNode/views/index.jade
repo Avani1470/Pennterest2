@@ -1,0 +1,20 @@
+     
+// Basic Jade specification for querying for an actor
+// Inherits from layout 
+extend layout
+// Then we produce a form that triggers /actor once
+// the user hits Submit
+block content
+  p
+    | #{error}
+  p
+    | Please enter login details:
+    form(method='post', action='/login', name='myForm')
+      input(name='login', value='')
+      input(name='password',type='password', value='')
+      input(type='submit', value='Submit')
+  
+  p
+    | Sign up:
+    form(method='get', action='/toregister', name='myForm1')
+      input(type='submit', value='Register')

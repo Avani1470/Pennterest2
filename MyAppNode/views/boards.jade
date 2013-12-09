@@ -1,0 +1,31 @@
+// Jade file to specify output of an actors list
+// Inherits from layout
+extend layout
+block content
+  p    
+    form(method='get', action='/addBoard', name='myForm')
+      label name
+      input(name='board_name', value='')
+      br
+      label type
+      input(name='board_type', value='')
+      br
+      input(type='submit', value='Add Board')
+      
+
+  p
+    | #{title}:      
+    .img_grid
+    - for (var inx = 0; inx < results.length; inx++)
+      .floated_img
+        img(src='#{results[inx].PHOTO}', width='150px', height='150px',hspace=10)
+        
+        p  
+          a(href='#') #{results[inx].BOARDNAME} 
+          - if(session==login)
+              a(href='/deleteBoard/?board_name=#{results[inx].BOARDNAME}') delete
+          
+        
+
+
+  

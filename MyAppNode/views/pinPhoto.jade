@@ -1,0 +1,16 @@
+extend layout
+block content
+
+  
+  img(src=results.OBJECTURL, width='250px', height='250px')
+  
+  form(method='get', action='/pinPhoto', name='myForm')
+    p | Board
+    input(name='board', value='')
+    p | Tags(Comma separated)
+    input(name='tags', value='')
+    input(name='objectid', value=results.OBJECTID, type='hidden')
+    input(name='objectsource', value=results.OBJECTSOURCE, type='hidden')
+    
+    
+    input(type='submit', value='Pin it')

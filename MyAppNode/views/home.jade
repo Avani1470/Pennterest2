@@ -1,0 +1,39 @@
+// Jade file to specify output of an actors list
+// Inherits from layout
+extend layout
+block content
+  form(method='get', action='/searchPin', name='myForm')
+      input(name='search', value='')
+      input(type='submit', value='Search')
+      
+  a(href='/callfileupload') Upload a pin
+  a(href='user') Profile
+
+  p
+    
+    .img_grid
+      | Pinned photos:
+    - for (var inx = 0; inx < results.results.length; inx++)
+      .floated_img
+        p #{results.results[inx].OBJECTNAME}
+        p RATING: #{results.results[inx].AVG}
+        img(src=results.results[inx].OBJECTURL, width='250px', height='250px')
+        .foot
+          .left
+            a(href='/pin_unpin?objectid=#{results.results[inx].OBJECTID}&objectsource=#{results.results[inx].OBJECTSOURCE}&ispinned=Unpin') Unpin
+          .right
+            a(margin='2px' href='/rate?objectid=#{results.results[inx].OBJECTID}&objectsource=#{results.results[inx].OBJECTSOURCE}&rating=1') 1
+            a(margin='2px' href='/rate?objectid=#{results.results[inx].OBJECTID}&objectsource=#{results.results[inx].OBJECTSOURCE}&rating=2') 2
+            a(margin='2px' href='/rate?objectid=#{results.results[inx].OBJECTID}&objectsource=#{results.results[inx].OBJECTSOURCE}&rating=3') 3
+            a(margin='2px' href='/rate?objectid=#{results.results[inx].OBJECTID}&objectsource=#{results.results[inx].OBJECTSOURCE}&rating=4') 4
+            a(margin='2px' href='/rate?objectid=#{results.results[inx].OBJECTID}&objectsource=#{results.results[inx].OBJECTSOURCE}&rating=5') 5
+            
+        
+        
+  p     
+       
+    .img_grid
+      | Recommended photos: 
+    - for (var inx = 0; inx < results.results1.length; inx++)
+      .floated_img
+        img(src=results.results1[inx].OBJECTURL, width='250px', height='250px')

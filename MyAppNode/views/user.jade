@@ -1,0 +1,19 @@
+extend layout
+block content
+  form(method='get', action='/Bing', name='myForm')
+      input(name='searchinput', value='')
+      input(type='submit', value='Submit')
+      input(type="radio",name="searchtype",value="TagSearch",checked="checked") 
+      | TagSearch
+      input(type="radio",name="searchtype",value="BingSearch")
+      | BingSearch
+  p
+    | #{title}:      
+    .img_grid
+    - for (var inx = 0; inx < results.length; inx++)
+      .floated_img
+        img(src=results[inx].OBJECTURL, width='250px', height='250px',hspace=10)
+        //p  #{results[inx].OBJECTID}
+        p  Name: #{results[inx].OBJECTNAME}
+        p  Rating: #{results[inx].SCORE}
+        p  Board:#{results[inx].BOARDNAME}

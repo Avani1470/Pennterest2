@@ -1,0 +1,10 @@
+extend layout
+block content
+  
+  p
+    | #{title}:      
+    .img_grid
+    - for (var inx = 0; inx < results.length; inx++)
+      .floated_img
+        img(src=results[inx], width='250px', height='250px',hspace=10)
+        

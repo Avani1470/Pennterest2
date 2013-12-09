@@ -1,0 +1,55 @@
+     
+// Basic Jade specification for querying for an actor
+// Inherits from layout 
+extend layout
+// Then we produce a form that triggers /actor once
+// the user hits Submit
+block content
+  p
+    | #{error}
+  p
+    | Please fill in the details:
+    form(method='get', action='/register', name='myForm')
+      tr
+        td |First name:
+        td
+          input(name='firstname', value='')
+      br
+      tr
+        td |Last name: 
+        td
+          input(name='lastname', value='')
+      br
+      tr
+        td |DoB: 
+        td
+          input(name='dob', type='date', value='')
+      br
+      tr
+        td |Gender:  Male
+        td
+          input(name='gender', type='radio', value='male')
+          |Female
+          input(name='gender', type='radio', value='female')
+      br
+      tr
+        td |Affiliation: 
+        td
+          input(name='affiliation', value='')
+      br
+      tr
+        td |Email Id: 
+        td
+          input(name='emailid', value='')
+      br
+      tr
+        td |Password: 
+        td
+          input(name='password', type='password', value='')
+      br
+      tr
+        td |Confirm Password: 
+        td
+          input(name='confirmpassword', type='password', value='')
+        <br>
+        input(type='submit', value='Sign me up')

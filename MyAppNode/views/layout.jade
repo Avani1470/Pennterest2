@@ -1,0 +1,28 @@
+!!!5
+html
+  head
+    title #{title}
+    link(rel='stylesheet', href='/stylesheets/style2.css')
+  body
+  
+    .wrapper
+      .header
+        h2 Pennterest
+      -if (session!=null) 
+        ul.nav
+          li
+            a(href="/home") Home
+          li
+            a(href="/user") Profile
+          li
+            a(href="/boards") Boards
+          li
+            a(href="/friends") Friends
+              
+          li
+            a(href="/logout") logout
+      .main
+      .side
+        block content 
+      .footer
+        p &copy; PennterestSVAN 2013, All rights reserved 
